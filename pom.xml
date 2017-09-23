@@ -4,7 +4,7 @@
 
 	<groupId>org.awesley.microservice</groupId>
 	<artifactId>microservice-base</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>pom</packaging>
 	<name>${project.groupId}:${project.artifactId}</name>
 
@@ -37,11 +37,4 @@
 			<version>${javax.inject.version}</version>
 		</dependency>
 	</dependencies>
-	
-	<modules>
-		<module>microservice-resource-base</module>
-		<module>microservice-service-base</module>
-		<module>microservice-application-base</module>
-		<module>microservice-persistence-base</module>
-	</modules>
 </project>
