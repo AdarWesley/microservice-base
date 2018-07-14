@@ -12,11 +12,21 @@
 	<packaging>pom</packaging>
 	<name>${project.groupId}:${project.artifactId}</name>
 	
+	<properties>
+		<swagger.version>1.5.18</swagger.version>
+		<cxf.project.version>3.2.1</cxf.project.version>
+	</properties>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-rs-extension-providers</artifactId>
-			<version>3.1.7</version>
+			<version>${cxf.project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-rs-service-description</artifactId>
+			<version>${cxf.project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -26,12 +36,12 @@
 		<dependency>
 		    <groupId>io.swagger</groupId>
 		    <artifactId>swagger-annotations</artifactId>
-		    <version>1.5.12</version>
+		    <version>${swagger.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.swagger</groupId>
 			<artifactId>swagger-jaxrs</artifactId>
-			<version>1.5.12</version>
+			<version>${swagger.version}</version>
 		</dependency>		
 	</dependencies>
 </project>
