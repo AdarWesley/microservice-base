@@ -3,9 +3,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.awesley.microservice</groupId>
-		<artifactId>microservice-base</artifactId>
+		<artifactId>microservice-base-parent</artifactId>
 		<version>1.0</version>
-		<relativePath>../</relativePath>
+		<relativePath>../microservice-base-parent</relativePath>
 	</parent>
 	
 	<artifactId>microservice-persistence-base</artifactId>
@@ -28,6 +28,10 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
 		</dependency>
 	</dependencies>	
 </project>

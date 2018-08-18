@@ -2,52 +2,68 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	
 	<parent>
 		<groupId>org.awesley.microservice</groupId>
 		<artifactId>microservice-base-parent</artifactId>
 		<version>1.0</version>
 		<relativePath>../microservice-base-parent</relativePath>
 	</parent>
-
-	<artifactId>microservice-resource-base</artifactId>
+	
+	<artifactId>microservice-ck-base</artifactId>
 	<packaging>pom</packaging>
-	<name>${project.groupId}:${project.artifactId}</name>
-
+	
 	<properties>
 		<swagger.version>1.5.18</swagger.version>
+		<feign.version>9.5.0</feign.version>
 		<cxf.project.version>3.2.1</cxf.project.version>
-		<base.package>base.package should be overriden in MS-resource POM</base.package>
+		<base.package>base.package should be overriden in MS-ck POM</base.package>
 		<api-package>${base.package}.resources.interfaces</api-package>
 		<model-package>${base.package}.resources.models</model-package>
-		<swagger-file.groupId>swagger-file.groupId swagger-file.artifactId</swagger-file.groupId>
-		<swagger-file.artifactId>swagger-file.artifactId </swagger-file.artifactId>
-		<swagger-file.version>swagger-file.version swagger-file.artifactId</swagger-file.version>
+		<swagger-file.groupId>swagger-file.groupId should be overriden in MS-ck POM</swagger-file.groupId>
+		<swagger-file.artifactId>swagger-file.artifactId should be overriden in MS-ck POM</swagger-file.artifactId>
+		<swagger-file.version>swagger-file.version should be overriden in MS-ck POM</swagger-file.version>
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.cloud</groupId>
+		    <artifactId>spring-cloud-netflix-core</artifactId>
+		    <version>1.4.5.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>io.github.openfeign</groupId>
+			<artifactId>feign-core</artifactId>
+			<version>${feign.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>io.swagger</groupId>
+		    <artifactId>swagger-annotations</artifactId>
+		    <version>${swagger.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-jaxrs</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>		
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-rs-extension-providers</artifactId>
 			<version>${cxf.project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-rs-service-description</artifactId>
-			<version>${cxf.project.version}</version>
+			<groupId>io.github.openfeign</groupId>
+			<artifactId>feign-jackson</artifactId>
+			<version>${feign.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.swagger</groupId>
-			<artifactId>swagger-annotations</artifactId>
-			<version>${swagger.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.swagger</groupId>
-			<artifactId>swagger-jaxrs</artifactId>
-			<version>${swagger.version}</version>
+			<groupId>io.github.openfeign</groupId>
+			<artifactId>feign-httpclient</artifactId>
+			<version>${feign.version}</version>
 		</dependency>
 	</dependencies>
 	
@@ -74,7 +90,7 @@
 										<type>yaml</type>
 										<overWrite>true</overWrite>
 										<outputDirectory>${project.build.directory}</outputDirectory>
-										<destFileName>${swagger-file.artifactId}.yaml</destFileName>
+										<destFileName>digitalLogin.yaml</destFileName>
 									</artifactItem>
 								</artifactItems>
 								<!-- other configurations here -->
@@ -92,9 +108,12 @@
 				                <goal>generate</goal>
 				            </goals>
 				            <configuration>
-				                <inputSpec>${project.build.directory}/${swagger-file.artifactId}.yaml</inputSpec>
-				                <language>jaxrs-cxf</language>
-				                <templateDirectory>../../../swagger-templates/java-jaxrs-cxf</templateDirectory>
+				                <inputSpec>${project.build.directory}/digitalLogin.yaml</inputSpec>
+				                <language>jaxrs-cxf-client</language>			                
+				                <templateDirectory>../../swagger-templates/amdocs-client-feign</templateDirectory>
+				                <!-- <language>spring</language>
+				                <templateDirectory>../../swagger-templates/CustomJavaSpring</templateDirectory>
+				                <library>spring-cloud</library> -->
 				                <output>${project.build.directory}</output>
 				                <apiPackage>${api-package}</apiPackage>
 				                <modelPackage>${model-package}</modelPackage>
@@ -130,4 +149,5 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+	
 </project>

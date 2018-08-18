@@ -8,39 +8,14 @@
 	<packaging>pom</packaging>
 	<name>${project.groupId}:${project.artifactId}</name>
 
-	<properties>
-		<spring.boot.version>1.5.9.RELEASE</spring.boot.version>
-		<slf4j.version>1.7.25</slf4j.version>
-		<javax.inject.version>1</javax.inject.version>
-	</properties>
-
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<!-- Import dependency management from Spring Boot -->
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-dependencies</artifactId>
-				<version>${spring.boot.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<version>${javax.inject.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-<!-- 			<version>${slf4j.version}</version> -->
-		</dependency>
-	</dependencies>
+	<modules>
+		<module>microservice-base-parent</module>
+		<module>microservice-api-base</module>
+		<module>microservice-service-base</module>
+		<module>microservice-persistence-base</module>
+		<module>microservice-resource-base</module>
+		<module>microservice-gateway-base</module>
+		<module>microservice-application-base</module>
+		<module>microservice-ck-base</module>
+	</modules>
 </project>
