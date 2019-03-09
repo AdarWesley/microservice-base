@@ -90,7 +90,7 @@
 										<type>yaml</type>
 										<overWrite>true</overWrite>
 										<outputDirectory>${project.build.directory}</outputDirectory>
-										<destFileName>digitalLogin.yaml</destFileName>
+										<destFileName>${swagger-file.artifactId}-${swagger-file.version}.yaml</destFileName>
 									</artifactItem>
 								</artifactItems>
 								<!-- other configurations here -->
@@ -108,9 +108,9 @@
 				                <goal>generate</goal>
 				            </goals>
 				            <configuration>
-				                <inputSpec>${project.build.directory}/digitalLogin.yaml</inputSpec>
-				                <language>jaxrs-cxf-client</language>			                
-				                <templateDirectory>../../swagger-templates/amdocs-client-feign</templateDirectory>
+				                <inputSpec>${project.build.directory}/${swagger-file.artifactId}-${swagger-file.version}.yaml</inputSpec>
+				                <language>jaxrs-cxf-client-amdocs</language>			                
+				                <!-- <templateDirectory>../../swagger-templates/amdocs-client-feign</templateDirectory> -->
 				                <!-- <language>spring</language>
 				                <templateDirectory>../../swagger-templates/CustomJavaSpring</templateDirectory>
 				                <library>spring-cloud</library> -->
@@ -123,6 +123,9 @@
 				                <configOptions>
 				                   <sourceFolder>src/gen/java</sourceFolder>
 				                </configOptions>
+				                <additionalProperties>
+				                	<additionalProperty>useGenericResponse=true</additionalProperty>
+				                </additionalProperties>
 				            </configuration>
 				        </execution>
 				    </executions>
@@ -146,6 +149,35 @@
 						</execution>
 					</executions>
 				</plugin>						
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>io.swagger</groupId>
+										<artifactId>
+											swagger-codegen-awes-maven-plugin
+										</artifactId>
+										<versionRange>
+											[2.4.0-SNAPSHOT,)
+										</versionRange>
+										<goals>
+											<goal>generate</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>

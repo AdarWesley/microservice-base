@@ -26,6 +26,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>org.awesley.infra</groupId>
+			<artifactId>infra-security</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-rs-extension-providers</artifactId>
 			<version>${cxf.project.version}</version>
@@ -93,8 +98,8 @@
 				            </goals>
 				            <configuration>
 				                <inputSpec>${project.build.directory}/${swagger-file.artifactId}.yaml</inputSpec>
-				                <language>jaxrs-cxf</language>
-				                <templateDirectory>../../../swagger-templates/java-jaxrs-cxf</templateDirectory>
+				                <language>jaxrs-cxf-amdocs</language>
+				                <!-- <templateDirectory>../../../swagger-templates/java-jaxrs-cxf</templateDirectory> -->
 				                <output>${project.build.directory}</output>
 				                <apiPackage>${api-package}</apiPackage>
 				                <modelPackage>${model-package}</modelPackage>
@@ -104,6 +109,9 @@
 				                <configOptions>
 				                   <sourceFolder>src/gen/java</sourceFolder>
 				                </configOptions>
+				                <additionalProperties>
+				                	<additionalProperty>useGenericResponse=true</additionalProperty>
+				                </additionalProperties>
 				            </configuration>
 				        </execution>
 				    </executions>
@@ -127,6 +135,35 @@
 						</execution>
 					</executions>
 				</plugin>						
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>io.swagger</groupId>
+										<artifactId>
+											swagger-codegen-awes-maven-plugin
+										</artifactId>
+										<versionRange>
+											[2.4.0-SNAPSHOT,)
+										</versionRange>
+										<goals>
+											<goal>generate</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>

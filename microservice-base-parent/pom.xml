@@ -22,6 +22,11 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
+	            <groupId>mysql</groupId>
+	            <artifactId>mysql-connector-java</artifactId>
+			    <version>8.0.11</version>
+	        </dependency>
+			<dependency>
 				<!-- Import dependency management from Spring Boot -->
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-dependencies</artifactId>
@@ -52,6 +57,11 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<!-- <version>${slf4j.version}</version> -->
+		</dependency>
+		<dependency>
+			<groupId>org.awesley.infra</groupId>
+			<artifactId>infra-errors</artifactId>
+			<version>1.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
