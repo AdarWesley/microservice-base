@@ -5,7 +5,7 @@
 	
 	<groupId>org.awesley.microservice</groupId>
 	<artifactId>microservice-base-parent</artifactId>
-	<version>1.0</version>
+	<version>1.1</version>
 	<packaging>pom</packaging>
 	<name>${project.groupId}:${project.artifactId}</name>
 	
@@ -17,6 +17,7 @@
 		<java.version>1.8</java.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.plugin.version>3.5.1</maven.compiler.plugin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -61,10 +62,42 @@
 		<dependency>
 			<groupId>org.awesley.infra</groupId>
 			<artifactId>infra-errors</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>1.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.awesley.infra</groupId>
+			<artifactId>infra-customization</artifactId>
+			<version>1.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.plugin.version}</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<fork>true</fork>
+					<compilerArgs>
+						<compilerArg>-J-verbose</compilerArg>
+						<compilerArg>${enableDebugAnnotationCompilerArg}</compilerArg>
+					</compilerArgs>
+					<forceJavacCompilerUse>true</forceJavacCompilerUse>
+					<annotationProcessorPaths>
+						<annotationProcessorPath>
+							<groupId>org.awesley.infra</groupId>
+							<artifactId>infra-customization</artifactId>
+							<version>1.1-SNAPSHOT</version>
+						</annotationProcessorPath>
+					</annotationProcessorPaths>
+					<annotationProcessors>
+						<annotationProcessor>org.awesley.infra.annotation.CustomizationAnnotationProcessor</annotationProcessor>
+					</annotationProcessors>
+				</configuration>
+			</plugin>
+		</plugins>
 		<pluginManagement>
 			<plugins>
 				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
@@ -101,4 +134,12 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+	<profiles>
+		<profile>
+			<id>debugAnnotation</id>
+			<properties>
+				<enableDebugAnnotationCompilerArg>-J-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=1044</enableDebugAnnotationCompilerArg>
+			</properties>
+		</profile>
+	</profiles>
 </project>

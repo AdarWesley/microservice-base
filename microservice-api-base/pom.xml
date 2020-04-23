@@ -4,8 +4,9 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.awesley.microservice</groupId>
-	<version>1.0</version>
+	<version>1.1</version>
 	<artifactId>microservice-api-base</artifactId>
+	<name>${project.groupId}:${project.artifactId}</name>
 	<packaging>pom</packaging>
 	
 	<properties>

@@ -6,11 +6,12 @@
 	<parent>
 		<groupId>org.awesley.microservice</groupId>
 		<artifactId>microservice-base-parent</artifactId>
-		<version>1.0</version>
+		<version>1.1</version>
 		<relativePath>../microservice-base-parent</relativePath>
 	</parent>
 	
 	<artifactId>microservice-ck-base</artifactId>
+	<name>${project.groupId}:${project.artifactId}</name>
 	<packaging>pom</packaging>
 	
 	<properties>
@@ -181,5 +182,4 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-	
 </project>
