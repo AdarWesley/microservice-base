@@ -15,7 +15,7 @@
 
 	<properties>
 		<swagger.version>1.5.18</swagger.version>
-		<cxf.project.version>3.2.1</cxf.project.version>
+		<cxf.project.version>3.5.9</cxf.project.version>
 		<base.package>base.package should be overriden in MS-resource POM</base.package>
 		<api-package>${base.package}.resources.interfaces</api-package>
 		<model-package>${base.package}.resources.models</model-package>
